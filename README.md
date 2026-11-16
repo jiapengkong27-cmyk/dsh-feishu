@@ -1,4 +1,4 @@
-# dsh-feishu
+﻿# dsh-feishu
 
 把飞书接进 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）：一个连接看板、一个侧栏入口、一颗随时能拔的插头。
 
@@ -33,7 +33,7 @@
 前置：Windows、DSH 0.2.x、已安装并登录 `lark-cli`（`lark-cli auth login`）。
 
 ```powershell
-git clone <this-repo> dsh-feishu
+git clone https://github.com/jiapengkong27-cmyk/dsh-feishu.git
 cd dsh-feishu
 
 # 1) 装桥接（默认装到 %DSH_HOME%\feishu-bridge，注册每分钟计划任务）

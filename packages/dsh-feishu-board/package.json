@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "dsh-feishu-board",
   "version": "1.1.0",
   "private": true,
@@ -15,12 +15,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OWNER/dsh-feishu.git",
+    "url": "git+https://github.com/jiapengkong27-cmyk/dsh-feishu.git",
     "directory": "packages/dsh-feishu-board"
   },
-  "homepage": "https://github.com/OWNER/dsh-feishu#readme",
+  "homepage": "https://github.com/jiapengkong27-cmyk/dsh-feishu#readme",
   "bugs": {
-    "url": "https://github.com/OWNER/dsh-feishu/issues"
+    "url": "https://github.com/jiapengkong27-cmyk/dsh-feishu/issues"
   },
   "exports": {
     ".": "./index.js",
