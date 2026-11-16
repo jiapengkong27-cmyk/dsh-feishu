@@ -77,8 +77,10 @@ if ($staged -eq 0) {
 }
 
 # --- 4. remote ----------------------------------------------------------------
-$remote = (& $git remote get-url origin 2>$null)
-if ($LASTEXITCODE -eq 0 -and $remote) {
+# `git remote` (not `get-url`) so a missing origin is not an error record.
+$remotes = @(& $git remote)
+if ($remotes -contains "origin") {
+  $remote = (& $git remote get-url origin)
   Note "origin already set: $remote"
 } elseif ($ghReady) {
   $visibility = if ($Public) { "--public" } else { "--private" }
