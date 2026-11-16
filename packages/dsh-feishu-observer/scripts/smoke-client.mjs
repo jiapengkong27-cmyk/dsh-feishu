@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Regression check for the Client half: renders the capsule and the board with a
  * stub React and asserts the action set of each connection state (connected /
  * disconnected by hand / broken). No browser or DSH host needed:

@@ -1,4 +1,4 @@
-﻿# dsh-feishu
+# dsh-feishu
 
 把飞书接进 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）：一个连接看板、一个侧栏入口、一颗随时能拔的插头。
 
@@ -20,6 +20,30 @@
                                └── dsh-feishu-board：看板 + 侧栏与标题栏指示灯
 ```
 
+## 目录结构
+
+```
+dsh-feishu/
+├─ packages/
+│  ├─ dsh-feishu-observer/   引擎：检查 / 自检修复 / 通知 / 可选浮窗
+│  │  ├─ index.js            宿主半边：HTTP 路由、计划任务、lark-cli 调用
+│  │  ├─ client.js           浏览器半边：状态胶囊与详情面板
+│  │  ├─ cordis.patch.yml    bundle 挂载声明（不含个人配置）
+│  │  ├─ locale/  icon.svg  docs/  scripts/
+│  └─ dsh-feishu-board/      界面：左侧栏看板 + 标题栏状态灯
+├─ bridge/                   Windows 桥接：setup / sender / enqueue / bridge
+├─ docs/install.md           安装、配置、排错
+├─ scripts/publish.ps1       建仓库并推送（有 gh 用 gh，没有就打印手动步骤）
+├─ README.md  LICENSE
+```
+
+## 依赖
+
+- **Windows 10/11**：桥接依赖计划任务、`schtasks`、`wscript`；插件本身在其它平台能跑，但没有收发桥接。
+- **DSH 0.2.x**：`dsh plugin` 用来 link 安装。
+- **lark-cli**：`npm i -g @larksuite/cli`，并完成 `lark-cli auth login`（机器人 + 用户身份都要 ready）。
+- **Node.js 18+**：只用于跑仓库里的 smoke 脚本；DSH 本身用自带运行时。
+
 ## 能做什么
 
 - **一眼看到通不通**：标题栏「● 飞书」常驻，绿=已连接、黄=部分异常、红=中断（呼吸闪烁）、空心灰=已手动断开/未知；左栏图标右下角也有同色小点。
@@ -28,9 +52,9 @@
 - **自动修复**：断线时探测网络 → 重启桥接订阅 → 复查，逐步结果留在看板上。
 - **启动通知**：DSH 启动时向飞书发一条「已上线」。
 
-## 安装
+## 安装与快速开始
 
-前置：Windows、DSH 0.2.x、已安装并登录 `lark-cli`（`lark-cli auth login`）。
+依赖见上一节。三步装好：
 
 ```powershell
 git clone https://github.com/jiapengkong27-cmyk/dsh-feishu.git

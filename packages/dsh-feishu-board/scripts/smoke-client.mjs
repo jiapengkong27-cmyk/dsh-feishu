@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Regression check for the Client half: renders the sidebar entry and the page
  * for each connection state with a stub React, asserting the controls each state
  * offers. No browser or DSH host needed:

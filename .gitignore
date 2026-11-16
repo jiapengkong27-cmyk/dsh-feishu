@@ -7,11 +7,24 @@ package-lock.json
 *.log
 state.json
 config.json
+status.json
+run-hidden.vbs
 consumer.out
 consumer.err
 events/
 outbox/
 inbox/
+
+# local overrides and secrets (use the yml in docs/install.md as a template)
+.env
+.env.*
+secrets*
+*.local.yml
+
+# build / test output
+dist/
+coverage/
+*.tmp
 
 # editor / OS
 .vscode/

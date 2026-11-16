@@ -1220,11 +1220,28 @@ export function apply(ctx, rawConfig) {
 
   const runScheduledTask = async () => {
     if (!cfg.senderTask) return { label: '启动计划任务', status: 'skip', detail: '未配置计划任务名' }
-    const result = await spawnHidden(stateDir, 'schtasks.exe', ['/Run', '/TN', cfg.senderTask], { timeoutMs: 20000 })
+    const schtasks = (args) => spawnHidden(stateDir, 'schtasks.exe', args, { timeoutMs: 20000 })
+    let result = await schtasks(['/Run', '/TN', cfg.senderTask])
+    let reenabled = false
+    if (result.code !== 0) {
+      // /Run refuses a disabled task (267011). A disabled sender task is the
+      // usual reason the heartbeat starves, so turn it back on and retry.
+      const text = String(result.err || result.out || '')
+      if (result.code === 267011 || /disabled|禁用的计划任务|已禁用/i.test(text)) {
+        const enable = await schtasks(['/Change', '/TN', cfg.senderTask, '/ENABLE'])
+        if (enable.code === 0) {
+          reenabled = true
+          result = await schtasks(['/Run', '/TN', cfg.senderTask])
+        }
+      }
+    }
+    const ok = result.code === 0
     return {
       label: '启动计划任务 ' + cfg.senderTask,
-      status: result.code === 0 ? 'ok' : 'warn',
-      detail: result.code === 0 ? '已触发计划任务' : '触发失败：' + clampText(result.err || result.out, 100),
+      status: ok ? 'ok' : 'warn',
+      detail: ok
+        ? (reenabled ? '计划任务已被禁用，已重新启用并触发' : '已触发计划任务')
+        : '触发失败：' + clampText(result.err || result.out, 100),
       ms: result.ms,
     }
   }
