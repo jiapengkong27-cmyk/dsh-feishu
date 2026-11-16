@@ -1,0 +1,6 @@
+# dsh-feishu-board bundle patch: mounts the host half and its Client module.
+# The page reads and drives the link through dsh-feishu-observer's local
+# /feishu-observer/* API, so there is no connection config to duplicate here.
+- insert:
+    - id: feishu-board
+      name: 'dsh-feishu-board'

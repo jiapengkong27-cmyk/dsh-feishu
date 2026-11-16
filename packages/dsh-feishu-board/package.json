@@ -1,0 +1,54 @@
+{
+  "name": "dsh-feishu-board",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Feishu connection board for DSH with a left-sidebar entry and an always-on header status dot: live checks, disconnect and reconnect on one page.",
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "feishu",
+    "lark",
+    "sidebar",
+    "plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OWNER/dsh-feishu.git",
+    "directory": "packages/dsh-feishu-board"
+  },
+  "homepage": "https://github.com/OWNER/dsh-feishu#readme",
+  "bugs": {
+    "url": "https://github.com/OWNER/dsh-feishu/issues"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "docs",
+    "icon.svg",
+    "README.md",
+    "scripts"
+  ],
+  "scripts": {
+    "test": "node scripts/smoke-client.mjs"
+  },
+  "icon": "./icon.svg",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  }
+}

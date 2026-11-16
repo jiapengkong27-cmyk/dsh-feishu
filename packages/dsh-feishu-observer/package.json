@@ -1,0 +1,53 @@
+{
+  "name": "dsh-feishu-observer",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Feishu link engine for DSH: live checks, auto-diagnosis and repair, manual disconnect, and notices on start / break / disconnect / reconnect.",
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "feishu",
+    "lark",
+    "bridge",
+    "plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OWNER/dsh-feishu.git",
+    "directory": "packages/dsh-feishu-observer"
+  },
+  "homepage": "https://github.com/OWNER/dsh-feishu#readme",
+  "bugs": {
+    "url": "https://github.com/OWNER/dsh-feishu/issues"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "docs",
+    "icon.svg",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node scripts/smoke-client.mjs && node scripts/smoke-host.mjs"
+  },
+  "icon": "./icon.svg",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Feishu connection panel",
+    "description": "Adds a Feishu entry to the left sidebar: one full page with live checks, the last action and the timeline, plus one-click disconnect and reconnect.",
+    "detail": "docs/DETAIL.md"
+  }
+}

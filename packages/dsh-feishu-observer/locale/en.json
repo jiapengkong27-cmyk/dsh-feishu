@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Feishu connection board",
+    "description": "Shows the DSH to Feishu link live in the lower-right corner of the DSH window: authorization, event stream, bridge sender and API checks, automatic diagnosis and repair when the link breaks, and a Feishu online notice on every DSH start.",
+    "detail": "docs/DETAIL.md"
+  }
+}

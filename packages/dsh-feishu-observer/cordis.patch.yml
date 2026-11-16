@@ -1,0 +1,16 @@
+# dsh-feishu-observer bundle patch: mounts the host half and its Client module.
+#
+# Keep personal values out of this file: it ships with the package. Put your own
+# chatId / larkCli / bridgeDir into your PROFILE's cordis.patch.yml under the same
+# entry id — that file is local and never published.
+#
+# Example (profile cordis.patch.yml):
+#   - id: feishu-observer
+#     name: 'dsh-feishu-observer'
+#     config:
+#       chatId: oc_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+#       larkCli: C:/Users/you/AppData/Roaming/npm/lark-cli.cmd
+#       bridgeDir: C:/Users/you/.dsh/feishu-bridge
+- insert:
+    - id: feishu-observer
+      name: 'dsh-feishu-observer'
